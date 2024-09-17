@@ -1,27 +1,21 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "esModuleInterop": true,
-    "strict": true,
-    "moduleResolution": "node",
-    "noEmit": true,
- 
-    "outDir": "dist",
- 
-    "forceConsistentCasingInFileNames": true, 
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
     "skipLibCheck": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitAny": true,
-   
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    },
-  },
-  "tsc-alias": {
-    "resolveFullPaths": true,
-    "verbose": false
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"]
- }
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false
+  }
+}
