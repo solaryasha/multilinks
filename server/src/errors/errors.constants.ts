@@ -1,0 +1,1 @@
+export const EMAIL_USER_CONFLICT = 'User with this email already exists';
