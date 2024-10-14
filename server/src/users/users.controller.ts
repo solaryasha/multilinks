@@ -1,5 +1,6 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { User } from 'src/common/decorators/get-user.decorator';
 import { UsersService } from './users.service';
 
 @Controller('users')
@@ -8,7 +9,9 @@ export class UsersController {
 
   @UseGuards(AuthGuard('jwt'))
   @Get('/api/external')
-  ping () {
-    return { response: 'success!! woohoooo' };
+  ping (@User() user) {
+    const userSub = user.sub;
+    const email = user.email
+    return { response: 'success!! woohoooo', userSub, email, };
   }
 }
