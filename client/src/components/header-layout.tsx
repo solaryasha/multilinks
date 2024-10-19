@@ -6,12 +6,6 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu, X } from 'lucide-react'
 import { Logo } from './icons/logo'
 
-const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
-  { name: 'Services', href: '/services' },
-  { name: 'Contact', href: '/contact' },
-]
 
 export function HeaderLayout ({ children }: { children: React.ReactNode }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -25,15 +19,12 @@ export function HeaderLayout ({ children }: { children: React.ReactNode }) {
               <Logo />
             </Link>
             <nav className="hidden md:flex space-x-4">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  {item.name}
-                </Link>
-              ))}
+              <Link href='/login'>
+                <Button size='lg'>Login</Button>
+              </Link>
+              <Link href='/register'>
+                <Button size='lg'>Get started</Button>
+              </Link>
             </nav>
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
@@ -43,16 +34,9 @@ export function HeaderLayout ({ children }: { children: React.ReactNode }) {
               </SheetTrigger>
               <SheetContent side="right" className="w-[240px] sm:w-[300px]">
                 <div className="flex flex-col space-y-4 mt-4">
-                  {navItems.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
+                  <Link href='/login'>
+                    <Button>Log in</Button>
+                  </Link>
                 </div>
                 <Button
                   variant="ghost"
