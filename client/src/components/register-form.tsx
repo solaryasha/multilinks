@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { useState } from 'react'
+import { signup } from '@/app/login/actions'
 
 export function RegisterForm() {
   const state = { errors: {}, message: ''};
@@ -40,7 +41,7 @@ export function RegisterForm() {
             </div>
           </CardContent>
           <CardFooter>
-            <Button className="w-full" type="submit" disabled={isSubmitting}>
+            <Button className="w-full" type="submit" disabled={isSubmitting} formAction={signup}>
               {isSubmitting ? 'Creating account...' : 'Create account'}
             </Button>
           </CardFooter>
