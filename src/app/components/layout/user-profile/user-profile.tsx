@@ -6,6 +6,7 @@ import { User } from '@workos-inc/node';
 import { useState } from 'react';
 
 import styles from './user-profile.module.css';
+import authkitSignOut from '@/actions/signOut';
 
 interface Props {
   user: User
@@ -17,7 +18,7 @@ export function UserProfile(props: Props) {
   const [open, setOpen] = useState(false);
 
   const handleSignOutClick = async () => {
-    // TODO: handle sign out logic
+    await authkitSignOut()
   }
 
   return (

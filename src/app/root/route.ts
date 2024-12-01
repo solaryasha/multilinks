@@ -33,6 +33,7 @@ export const GET = async (request: NextRequest) => {
       actor: {
         type: 'user',
         id: session.user?.id,
+        name: `${session.user.firstName || ''} ${session.user.lastName || ''}`,
         metadata: {
           role: session.role as string
         }
