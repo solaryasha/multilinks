@@ -1,29 +1,35 @@
-'use client';
+"use client";
 
-import { PersonIcon } from '@radix-ui/react-icons';
-import { Avatar, Box, DropdownMenu, Flex, IconButton, Text } from '@radix-ui/themes';
-import { User } from '@workos-inc/node';
-
-import styles from './user-profile.module.css';
-import authkitSignOut from '@/actions/signOut';
+import { PersonIcon } from "@radix-ui/react-icons";
+import {
+  Avatar,
+  Box,
+  DropdownMenu,
+  Flex,
+  IconButton,
+  Text,
+} from "@radix-ui/themes";
+import { User } from "@workos-inc/node";
+import styles from "./user-profile.module.css";
+import authkitSignOut from "@/actions/signOut";
 
 interface Props {
-  user: User
+  user: User;
 }
 
 export function UserProfile(props: Props) {
   const { user } = props;
 
   const handleSignOutClick = async () => {
-    await authkitSignOut()
-  }
+    await authkitSignOut();
+  };
 
   return (
     <DropdownMenu.Root modal={false}>
       <DropdownMenu.Trigger>
-        <IconButton variant='ghost' className={styles.link}>
+        <IconButton variant="ghost" className={styles.link}>
           <Avatar
-            radius='full'
+            radius="full"
             size="2"
             fallback={user.firstName?.[0] || <PersonIcon />}
           />
@@ -31,7 +37,7 @@ export function UserProfile(props: Props) {
       </DropdownMenu.Trigger>
       <DropdownMenu.Content size="2">
         <DropdownMenu.Label>
-          <Flex direction='column'>
+          <Flex direction="column">
             <Text as="p" size="3" weight="medium">
               {user.firstName}
             </Text>
@@ -41,11 +47,14 @@ export function UserProfile(props: Props) {
           </Flex>
         </DropdownMenu.Label>
         <DropdownMenu.Separator />
-        <DropdownMenu.Item color='blue' onClick={handleSignOutClick} className={styles.link}>
+        <DropdownMenu.Item
+          color="blue"
+          onClick={handleSignOutClick}
+          className={styles.link}
+        >
           <Box>Log out</Box>
         </DropdownMenu.Item>
       </DropdownMenu.Content>
     </DropdownMenu.Root>
-
-  )
+  );
 }
