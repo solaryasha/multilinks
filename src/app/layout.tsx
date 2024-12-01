@@ -20,6 +20,9 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Multilinks",
   description: "Multilinks app",
+  icons: {
+    icon: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({
@@ -29,8 +32,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Theme>
+      <body className={`${geistSans.variable} ${geistMono.variable}`} color='grey'>
+        <Theme appearance='light'>
           <Header />
           <AuthKitProvider>
             {children}
