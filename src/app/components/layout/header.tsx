@@ -10,12 +10,12 @@ export async function Header() {
   const { user } = await withAuth();
   return (
     <Flex direction="row" justify='between' pb='4' pt="4">
-      <Box pl="9">
+      <Box pl={{ initial: '4', md: '9'}}>
         <Link href='/'>
           <Logo />
         </Link>
       </Box>
-      <Box pr="9">
+      <Box pr={{ initial: '4', md: '9'}}>
         <Flex gap="4">
           {user
             ? <UserProfile user={user} />

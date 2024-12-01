@@ -15,14 +15,12 @@ interface Props {
 export function UserProfile(props: Props) {
   const { user } = props;
 
-  const [open, setOpen] = useState(false);
-
   const handleSignOutClick = async () => {
     await authkitSignOut()
   }
 
   return (
-    <DropdownMenu.Root open={open} onOpenChange={setOpen} modal={false}>
+    <DropdownMenu.Root modal={false}>
       <DropdownMenu.Trigger>
         <IconButton variant='ghost' className={styles.link}>
           <Avatar
@@ -44,8 +42,8 @@ export function UserProfile(props: Props) {
           </Flex>
         </DropdownMenu.Label>
         <DropdownMenu.Separator />
-        <DropdownMenu.Item color='blue' onClick={() => setOpen(false)}>
-          <Box onClick={handleSignOutClick} className={styles.link}>Log out</Box>
+        <DropdownMenu.Item color='blue' onClick={handleSignOutClick} className={styles.link}>
+          <Box>Log out</Box>
         </DropdownMenu.Item>
       </DropdownMenu.Content>
     </DropdownMenu.Root>
