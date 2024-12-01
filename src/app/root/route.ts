@@ -54,7 +54,7 @@ export const GET = async (request: NextRequest) => {
       return redirect('/dashboard')
 
     case 'member':
-      return redirect('/explore')
+      return redirect('/my-links')
     
       default:
         return redirect('/')
