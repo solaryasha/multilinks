@@ -1,5 +1,5 @@
 import styles from "./page.module.css";
-import { Container, Flex, Heading, Section, Text } from '@radix-ui/themes';
+import { Container, Heading, Section, Text } from '@radix-ui/themes';
 
 export default function Home() {
   return (
