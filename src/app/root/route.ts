@@ -2,9 +2,8 @@ import { getSession, refreshSession } from '@workos-inc/authkit-nextjs';
 import { redirect } from 'next/navigation';
 import { NextRequest } from 'next/server';
 import { workos } from '../api/workos';
-import { on } from 'events';
 
-export const GET = async (request: NextRequest)  {
+export const GET = async (request: NextRequest) => {
   let session = await getSession();
 
   if (!session) {
