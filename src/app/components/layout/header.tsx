@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { LogInButton } from '../log-in-button';
 import { GetStartedButton } from '../get-started-button';
 import { withAuth } from '@workos-inc/authkit-nextjs';
+import { UserProfile } from './user-profile/user-profile';
 
 export async function Header() {
   const { user } = await withAuth();
@@ -17,7 +18,7 @@ export async function Header() {
       <Box pr="9">
         <Flex gap="4">
           {user
-            ? <p>Your are logged in !</p>
+            ? <UserProfile user={user} />
             : (
               <>
                 <LogInButton />
