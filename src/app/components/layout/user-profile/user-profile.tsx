@@ -3,7 +3,6 @@
 import { PersonIcon } from '@radix-ui/react-icons';
 import { Avatar, Box, DropdownMenu, Flex, IconButton, Text } from '@radix-ui/themes';
 import { User } from '@workos-inc/node';
-import { useState } from 'react';
 
 import styles from './user-profile.module.css';
 import authkitSignOut from '@/actions/signOut';
