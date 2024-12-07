@@ -19,6 +19,7 @@
     "@workos-inc/node": "^7.34.0",
     "concurrently": "^9.1.0",
     "convex": "^1.17.3",
+    "convex-helpers": "^0.1.65",
     "next": "15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106"
