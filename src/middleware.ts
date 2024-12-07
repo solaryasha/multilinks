@@ -1,8 +1,7 @@
-import { authkitMiddleware } from '@workos-inc/authkit-nextjs';
+import { authkitMiddleware } from "@workos-inc/authkit-nextjs";
 
-export default authkitMiddleware()
-
+export default authkitMiddleware();
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/']
-}
+  matcher: ["/dashboard/:path*", "/", "/my-links"],
+};
