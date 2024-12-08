@@ -3,14 +3,18 @@
 import { withAuth } from "@workos-inc/authkit-nextjs";
 import { fetchMutation } from "convex/nextjs";
 import { api } from "../../convex/_generated/api";
+import { FieldNames } from "@/types/fieldNames";
+import { validateUrl } from "@/utils/validateUrl";
 
-export default async function saveUserLink(link: string) {
+export default async function saveUserLink(formData: FormData) {
   const { user } = await withAuth();
+  if (!user) return;
 
-  if (user) {
-    await fetchMutation(api.userLinks.saveLink, {
-      link,
-      userId: user.id,
-    });
-  }
+  const link = formData.get(FieldNames.SavedUserLink) as string;
+  if (!validateUrl(link)) return;
+
+  await fetchMutation(api.userLinks.saveLink, {
+    link,
+    userId: user.id,
+  });
 }

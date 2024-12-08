@@ -1,19 +1,14 @@
 import saveUserLink from "@/actions/saveUserLink";
-import { Button, Flex, Heading } from "@radix-ui/themes";
+import { Flex, Heading } from "@radix-ui/themes";
+import SaveLinkInput from "../components/save-link-input";
 
 export default function MyLinksPage() {
   return (
     <Flex align="center" justify="center" direction="column">
       <Heading size="9">My links</Heading>
-      <form
-        action={async () => {
-          "use server";
-          saveUserLink("https://google.com");
-        }}
-      >
-        <Button>Click me</Button>
+      <form action={saveUserLink}>
+        <SaveLinkInput />
       </form>
-      {/* <Button>Click me</Button> */}
     </Flex>
   );
 }
