@@ -11,7 +11,8 @@ export default async function saveUserLink(formData: FormData) {
   if (!user) return;
 
   const link = formData.get(FieldNames.SavedUserLink) as string;
-  if (!validateUrl(link)) return;
+
+  if (!link || !validateUrl(link)) return;
 
   await fetchMutation(api.userLinks.saveLink, {
     link,

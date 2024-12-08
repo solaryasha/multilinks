@@ -1,14 +1,11 @@
-import saveUserLink from "@/actions/saveUserLink";
 import { Flex, Heading } from "@radix-ui/themes";
-import SaveLinkInput from "../components/save-link-input";
+import SaveLinkDialog from "../components/save-link-dialog";
 
 export default function MyLinksPage() {
   return (
-    <Flex align="center" justify="center" direction="column">
-      <Heading size="9">My links</Heading>
-      <form action={saveUserLink}>
-        <SaveLinkInput />
-      </form>
+    <Flex align="center" justify="between" pr="4" pl="4">
+      <Heading size="8">My links</Heading>
+      <SaveLinkDialog />
     </Flex>
   );
 }
