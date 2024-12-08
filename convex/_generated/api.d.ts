@@ -14,6 +14,8 @@ import type {
   FunctionReference,
 } from "convex/server";
 import type * as http from "../http.js";
+import type * as repository from "../repository.js";
+import type * as userLinks from "../userLinks.js";
 import type * as users from "../users.js";
 import type * as workos from "../workos.js";
 
@@ -27,6 +29,8 @@ import type * as workos from "../workos.js";
  */
 declare const fullApi: ApiFromModules<{
   http: typeof http;
+  repository: typeof repository;
+  userLinks: typeof userLinks;
   users: typeof users;
   workos: typeof workos;
 }>;

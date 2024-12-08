@@ -5,7 +5,7 @@ export default defineSchema({
   users: defineTable({
     email: v.string(),
     workos_id: v.string(),
-  }),
+  }).index("by_workos_id", ["workos_id"]),
   organizations: defineTable({
     workos_id: v.string(),
     name: v.string(),

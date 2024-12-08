@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import "@radix-ui/themes/styles.css";
-import { AuthKitProvider } from '@workos-inc/authkit-nextjs';
-import { Header } from './components/layout/header';
-import { Theme } from '@radix-ui/themes';
+import { AuthKitProvider } from "@workos-inc/authkit-nextjs";
+import { Header } from "./components/layout/header";
+import { Theme } from "@radix-ui/themes";
+import { ConvexClientProvider } from "./convexClientProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
   title: "Multilinks",
   description: "Multilinks app",
   icons: {
-    icon: '/favicon.svg',
+    icon: "/favicon.svg",
   },
 };
 
@@ -32,12 +33,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`} color='grey'>
-        <Theme appearance='light'>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable}`}
+        color="grey"
+      >
+        <Theme appearance="light">
           <Header />
-          <AuthKitProvider>
-            {children}
-          </AuthKitProvider>
+          <ConvexClientProvider>
+            <AuthKitProvider>{children}</AuthKitProvider>
+          </ConvexClientProvider>
         </Theme>
       </body>
     </html>
