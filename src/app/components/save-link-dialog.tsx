@@ -9,7 +9,7 @@ import saveUserLink from "@/actions/saveUserLink";
 
 export default function SaveLinkDialog() {
   const [open, setOpen] = useState(false);
-  const [loading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [isValid, setIsValid] = useState(true);
 
@@ -20,10 +20,12 @@ export default function SaveLinkDialog() {
 
   const handleSave = async (formData: FormData) => {
     if (validateUrl(inputValue)) {
+      setLoading(true);
       setInputValue("");
       setIsValid(true);
-      setOpen(false);
       await saveUserLink(formData);
+      setLoading(false);
+      setOpen(false);
     } else {
       setIsValid(false);
     }
@@ -36,6 +38,9 @@ export default function SaveLinkDialog() {
           size="3"
           style={{ cursor: "pointer" }}
           onClick={() => setIsValid(true)}
+          variant="classic"
+          color="gray"
+          highContrast
         >
           <PlusIcon />
           Add new link
@@ -76,7 +81,11 @@ export default function SaveLinkDialog() {
                 Cancel
               </Button>
             </Dialog.Close>
-            <Button type="submit" loading={loading}>
+            <Button
+              type="submit"
+              loading={loading}
+              style={{ cursor: "pointer" }}
+            >
               Save
             </Button>
           </Flex>
