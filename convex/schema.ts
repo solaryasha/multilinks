@@ -13,5 +13,5 @@ export default defineSchema({
   user_links: defineTable({
     workos_id: v.string(),
     link: v.string(),
-  }),
+  }).index("by_workos_id", ["workos_id"]),
 });
