@@ -8,41 +8,29 @@ import {
   TextField,
   Text,
   Box,
+  Link,
 } from "@radix-ui/themes";
-import { useState } from "react";
+import { User } from "@workos-inc/node";
+import { usePaginatedQuery } from "convex/react";
+import { Fragment, useState } from "react";
+import { api } from "../../../convex/_generated/api";
 
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
+interface Props {
+  user: User;
 }
-
-const mockUsers: User[] = [
-  { id: "1", name: "Alice Johnson", email: "alice@example.com", role: "Admin" },
-  { id: "2", name: "Bob Smith", email: "bob@example.com", role: "User" },
-  {
-    id: "3",
-    name: "Charlie Brown",
-    email: "charlie@example.com",
-    role: "User",
-  },
-  { id: "4", name: "David Lee", email: "david@example.com", role: "Manager" },
-  { id: "5", name: "Eva Martinez", email: "eva@example.com", role: "User" },
-];
 
 const resultsPerPage = [5, 10, 15, 20].map(String);
 
-export default function UserLinks() {
+export default function UserLinks({ user }: Props) {
   const [currentPage, setCurrentPage] = useState(1);
   const [filterValue, setFilterValue] = useState("");
   const [itemsPerPage, setItemsPerPage] = useState(5);
-
-  const filteredUsers = mockUsers;
-  const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentUsers = filteredUsers.slice(startIndex, endIndex);
+  const { results: userLinks } = usePaginatedQuery(
+    api.userLinks.paginate,
+    { userId: user.id },
+    { initialNumItems: itemsPerPage },
+  );
+  const totalPages = Math.ceil(userLinks.length / itemsPerPage);
 
   const handleItemsPerPageChange = (value: string) => {
     setItemsPerPage(Number(value));
@@ -51,7 +39,7 @@ export default function UserLinks() {
 
   return (
     <>
-      <Flex gap="4">
+      <Flex>
         <Box flexGrow="1">
           <TextField.Root
             type="text"
@@ -75,17 +63,23 @@ export default function UserLinks() {
         </Select.Root>
       </Flex>
 
-      <Table.Root variant="surface" my="4">
+      <Table.Root variant="surface" my="4" size="3">
         <Table.Header>
           <Table.Row>
             <Table.ColumnHeaderCell>Link</Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell>Added at</Table.ColumnHeaderCell>
           </Table.Row>
         </Table.Header>
 
         <Table.Body>
-          {currentUsers.map((user) => (
-            <Table.Row key={user.id} className="border-t">
-              <Table.Cell className="p-2">{user.name}</Table.Cell>
+          {userLinks.map((user) => (
+            <Table.Row key={user._id}>
+              <Table.Cell>
+                <Link href={user.link}>{user.link}</Link>
+              </Table.Cell>
+              <Table.Cell>
+                {new Date(user._creationTime).toLocaleString()}
+              </Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>

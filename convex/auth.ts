@@ -14,6 +14,6 @@ export const queryWithUser = customQuery(query, {
       throw new Error("Error saving link: User identity not found");
     }
 
-    return { ctx: {}, args: {} };
+    return { ctx: {}, args: { userId: args.userId } };
   },
 });
