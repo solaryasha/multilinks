@@ -59,6 +59,6 @@ export const GET = async (request: NextRequest) => {
 
     case "member":
     default: // TODO: send regular user to pricing(???) page
-      return redirect("/my-links");
+      return redirect("/discover");
   }
 };
