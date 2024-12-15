@@ -8,6 +8,7 @@ import {
   Grid,
   Heading,
   Link,
+  Skeleton,
   Text,
 } from "@radix-ui/themes";
 interface Props {
@@ -30,9 +31,9 @@ export function StoriesGrid(props: Props) {
             style={{ textDecoration: "none", color: "inherit" }}
           >
             <Card style={{ height: "100%" }}>
-              <Flex direction="column" width="100%" justify="between">
-                {story.thumbnailUrl ? (
-                  <AspectRatio ratio={1}>
+              <Flex direction="column" width="100%" gap="4">
+                <AspectRatio ratio={1}>
+                  {story.thumbnailUrl ? (
                     <img
                       src={story.thumbnailUrl}
                       alt="A house in a forest"
@@ -43,8 +44,11 @@ export function StoriesGrid(props: Props) {
                         borderRadius: "var(--radius-2)",
                       }}
                     />
-                  </AspectRatio>
-                ) : null}
+                  ) : (
+                    <Skeleton height="100%" />
+                  )}
+                </AspectRatio>
+
                 {/* <Heading size="4" mb="2">
                   {story.title}
                 </Heading> */}
