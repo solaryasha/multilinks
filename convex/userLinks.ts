@@ -9,9 +9,8 @@ export const paginate = queryWithUser({
     paginationOpts: paginationOptsValidator,
     userId: v.string(),
   },
-  handler: async (queryContext, args) => {
-    const { db } = queryContext;
-
+  handler: async (ctx, args) => {
+    const { db } = ctx;
     return await db
       .query("user_links")
       .filter((q) => q.eq(q.field("workos_id"), args.userId))

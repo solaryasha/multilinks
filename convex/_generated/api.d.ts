@@ -14,6 +14,7 @@ import type {
   FunctionReference,
 } from "convex/server";
 import type * as auth from "../auth.js";
+import type * as gemini from "../gemini.js";
 import type * as http from "../http.js";
 import type * as repository from "../repository.js";
 import type * as userLinks from "../userLinks.js";
@@ -30,6 +31,7 @@ import type * as workos from "../workos.js";
  */
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
+  gemini: typeof gemini;
   http: typeof http;
   repository: typeof repository;
   userLinks: typeof userLinks;

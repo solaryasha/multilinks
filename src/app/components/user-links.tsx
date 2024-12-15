@@ -10,26 +10,30 @@ import {
   Box,
   Link,
 } from "@radix-ui/themes";
-import { User } from "@workos-inc/node";
-import { usePaginatedQuery } from "convex/react";
-import { Fragment, useState } from "react";
+import { useAction } from "convex/react";
+import { useEffect, useState } from "react";
+import { Doc } from "../../../convex/_generated/dataModel";
 import { api } from "../../../convex/_generated/api";
 
 interface Props {
-  user: User;
+  links: Doc<"user_links">[];
 }
 
 const resultsPerPage = [5, 10, 15, 20].map(String);
 
-export default function UserLinks({ user }: Props) {
+export default function UserLinks({ links: userLinks }: Props) {
   const [currentPage, setCurrentPage] = useState(1);
   const [filterValue, setFilterValue] = useState("");
   const [itemsPerPage, setItemsPerPage] = useState(5);
-  const { results: userLinks } = usePaginatedQuery(
-    api.userLinks.paginate,
-    { userId: user.id },
-    { initialNumItems: itemsPerPage },
-  );
+
+  const links = useAction(api.gemini.getLinks);
+
+  useEffect(() => {
+    links().then((response) => {
+      console.log(response);
+    });
+  }, [links]);
+
   const totalPages = Math.ceil(userLinks.length / itemsPerPage);
 
   const handleItemsPerPageChange = (value: string) => {
