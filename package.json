@@ -2,6 +2,7 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev:next": "next dev",
     "dev:convex": "npx convex dev",
@@ -18,10 +19,13 @@
     "@radix-ui/themes": "^3.1.6",
     "@workos-inc/authkit-nextjs": "^0.16.1",
     "@workos-inc/node": "^7.34.0",
+    "axios": "^1.7.9",
     "concurrently": "^9.1.0",
     "convex": "^1.17.3",
     "convex-helpers": "^0.1.65",
+    "dotenv": "^16.4.7",
     "next": "15.0.3",
+    "openai": "^4.76.3",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106"
   },
