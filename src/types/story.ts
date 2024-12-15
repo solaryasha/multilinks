@@ -4,4 +4,5 @@ export interface Story {
   title: string;
   score: number;
   type: "job" | "story" | "comment" | "poll" | "pollopt";
+  thumbnailUrl: string | null;
 }

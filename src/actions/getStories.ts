@@ -1,14 +1,15 @@
 "use server";
-
+import ogs from "open-graph-scraper";
 import { Story } from "@/types/story";
 
 export default async function getStories() {
   const limit = 12;
   const topStories = await fetchTopStories();
-
   const storiesByKeyword = filterStoriesByScore(topStories, 100);
 
-  return storiesByKeyword.slice(0, limit);
+  const limitedStories = storiesByKeyword.slice(0, limit);
+
+  return await fetchStoriesWithThumbnails(limitedStories);
 }
 
 async function fetchTopStories(): Promise<Array<Story | null>> {
@@ -32,4 +33,20 @@ function filterStoriesByScore(
   return stories.filter((story): story is Story => {
     return !!story && story.score >= minScore;
   });
+}
+
+async function fetchStoriesWithThumbnails(stories: Story[]): Promise<Story[]> {
+  return await Promise.all(
+    stories.map(async (story) => {
+      try {
+        const { result } = await ogs({ url: story.url });
+
+        story.thumbnailUrl = result.ogImage?.[0].url || null;
+        return story;
+      } catch {
+        story.thumbnailUrl = null;
+        return story;
+      }
+    }),
+  );
 }

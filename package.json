@@ -25,6 +25,7 @@
     "convex-helpers": "^0.1.65",
     "dotenv": "^16.4.7",
     "next": "15.0.3",
+    "open-graph-scraper": "^6.8.3",
     "openai": "^4.76.3",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106"
