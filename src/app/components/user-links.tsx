@@ -10,10 +10,8 @@ import {
   Box,
   Link,
 } from "@radix-ui/themes";
-import { useAction } from "convex/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Doc } from "../../../convex/_generated/dataModel";
-import { api } from "../../../convex/_generated/api";
 
 interface Props {
   links: Doc<"user_links">[];
@@ -25,14 +23,6 @@ export default function UserLinks({ links: userLinks }: Props) {
   const [currentPage, setCurrentPage] = useState(1);
   const [filterValue, setFilterValue] = useState("");
   const [itemsPerPage, setItemsPerPage] = useState(5);
-
-  const links = useAction(api.gemini.getLinks);
-
-  useEffect(() => {
-    links().then((response) => {
-      console.log(response);
-    });
-  }, [links]);
 
   const totalPages = Math.ceil(userLinks.length / itemsPerPage);
 
