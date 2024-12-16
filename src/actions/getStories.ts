@@ -17,6 +17,14 @@ interface SummarizeArticleOptions {
   keywords: string[];
 }
 
+export interface Summary {
+  title: string;
+  summary: string;
+  relevancy_score: number;
+  author: string;
+  link: string;
+}
+
 export default async function getStories(keywords: string[] = []) {
   const topStoriesUrl = "http://hn.algolia.com/api/v1/search?tags=story";
   const response = await fetch(topStoriesUrl);
